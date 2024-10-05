@@ -1,0 +1,71 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+.maindiv {
+  border-radius: 15px;
+  background-color: #fff;
+  margin: 0 auto; /* Center the div */
+  max-width: 1200px; /* Set a maximum width to keep it centered */
+  padding: 20px; /* Add padding inside the white div */
+}
+
+.team-section {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #fff;
+  border-radius: 15px;
+}
+
+.team-section h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.team-section p {
+  font-size: 16px;
+  margin-bottom: 40px;
+  color: #666;
+}
+
+.team-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.team-member {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 300px;
+  text-align: left;
+}
+
+.team-member img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 15px;
+  border-radius: 50%; /* Make the image round */
+}
+
+.team-member h3 {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.team-member h4 {
+  font-size: 16px;
+  color: #007bff;
+  margin-bottom: 15px;
+}
+
+.team-member p {
+  font-size: 14px;
+  color: #666;
+}

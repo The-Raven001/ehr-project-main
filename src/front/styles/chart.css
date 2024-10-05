@@ -1,0 +1,151 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.patient-info {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.patient-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 15px;
+  margin-bottom: 25px;
+}
+
+.patient-profile {
+  display: flex;
+  align-items: center;
+}
+
+.patient-avatar img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.patient-details h3 {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+}
+
+.patient-details p {
+  margin: 5px 0 0;
+  color: #666;
+}
+
+.patient-summary p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.patient-records {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.section {
+  flex: 1;
+}
+
+.section h4 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #444;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+
+.section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.section li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.section li span:first-child {
+  flex: 1;
+}
+
+.prescription-details {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+}
+
+.prescription-info {
+  color: #777;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.view-button,
+.edit-button,
+.delete-button {
+  background-color: #0d0404;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 7px 15px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.delete-button {
+  background-color: darkred !important;
+}
+
+.view-button:hover,
+.refill-button:hover {
+  background-color: #0056b3;
+}
+
+.notes {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.notes ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notes h4 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #444;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+
+.notes li {
+  margin-bottom: 15px;
+}
+
+.notes {
+  flex: 1;
+}
