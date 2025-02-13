@@ -3,6 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       patient: null,
       user: null,
+      patients: null,
       notes: [],
       prescriptions: [],
     },
@@ -204,6 +205,38 @@ const getState = ({ getStore, getActions, setStore }) => {
           return data;
         } catch (error) {
           console.log("Error while trying to search chart", error);
+          return false;
+        }
+      },
+      //WORK HERE
+      improvedSearch: async (inputFromUser) => {
+        try {
+          const token = localStorage.getItem("token");
+          const response = await fetch(
+            `${process.env.BACKEND_URL}api/patients`,
+            {
+              method: "GET",
+              headers: {
+                "Content-type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          if (!response.ok) {
+            throw new Error(
+              "There was an error while trying to fetch the requested data."
+            );
+          }
+
+          const data = await response.json();
+          console.log("Patients:", data);
+          setStore({ patients: data });
+          return data;
+        } catch (error) {
+          console.log(
+            "Error while trying to retrieve data from server.",
+            error
+          );
           return false;
         }
       },

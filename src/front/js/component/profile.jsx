@@ -19,6 +19,10 @@ export const Profile = () => {
     navigate("/protected/search");
   };
 
+  const handleSearchImproved = () => {
+    navigate("/protected/search-improved");
+  };
+
   const handleCreateChart = () => {
     navigate("/protected/create-chart");
   };
@@ -40,9 +44,20 @@ export const Profile = () => {
           >
             Create Chart
           </button>
-          <button className="btn btn-dark profileButton" onClick={handleSearch}>
-            Search Chart
-          </button>
+          <div>
+            <button
+              className="btn btn-dark profileButton m-2"
+              onClick={handleSearch}
+            >
+              Search Chart
+            </button>
+            <button
+              className="btn btn-dark profileButton"
+              onClick={handleSearchImproved}
+            >
+              Search Chart (Improved version (beta))
+            </button>
+          </div>
         </div>
         <button
           onClick={handleLogout}
@@ -51,6 +66,7 @@ export const Profile = () => {
           Logout
         </button>
       </div>
+      <div></div>
     </div>
   );
 };

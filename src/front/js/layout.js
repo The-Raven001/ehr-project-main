@@ -3,28 +3,30 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 
-import { Home } from "./pages/home";
+import { Home } from "./pages/home.jsx";
 
-import { CreateChart } from "./pages/createChart";
-import { SignUp } from "./pages/signUp";
-import { Login } from "./pages/login";
-import { Search } from "./pages/searchChart";
-import { Chart } from "./pages/chart";
-import { EditChart } from "./pages/editChart";
-import { CreateProfile } from "./pages/createProfile";
-import { EditProfile } from "./pages/editProfile";
-import { PrescriptionForm } from "./pages/prescriptionForm";
-import { EditPrescription } from "./pages/editPrescription";
-import { NotFound } from "./pages/notFound";
-import { AddNote } from "./pages/addNote";
-import { AboutUs } from "./pages/aboutUs";
+import { CreateChart } from "./pages/createChart.jsx";
+import { SignUp } from "./pages/signUp.jsx";
+import { Login } from "./pages/login.jsx";
+import { Search } from "./pages/searchChart.jsx";
+import { NewSearchEngine } from "./pages/newSearchEngine.jsx";
+import { FoundResults } from "./pages/foundResults.jsx";
+import { Chart } from "./pages/chart.jsx";
+import { EditChart } from "./pages/editChart.jsx";
+import { CreateProfile } from "./pages/createProfile.jsx";
+import { EditProfile } from "./pages/editProfile.jsx";
+import { PrescriptionForm } from "./pages/prescriptionForm.jsx";
+import { EditPrescription } from "./pages/editPrescription.jsx";
+import { NotFound } from "./pages/notFound.jsx";
+import { AddNote } from "./pages/addNote.jsx";
+import { AboutUs } from "./pages/aboutUs.jsx";
 
 import injectContext from "./store/appContext";
 
-import { Navbar } from "./component/navbar";
-import { Footer } from "./component/footer";
-import { Profile } from "./component/profile";
-import { AuthWrapper } from "./component/authwrapper";
+import { Navbar } from "./component/navbar.jsx";
+import { Footer } from "./component/footer.jsx";
+import { Profile } from "./component/profile.jsx";
+import { AuthWrapper } from "./component/authwrapper.jsx";
 import UploadDocsForm from "./component/uploadDocsForm";
 
 const Layout = () => {
@@ -50,6 +52,8 @@ const Layout = () => {
               <Route element={<EditProfile />} path="edit-profile" />
               <Route element={<Profile />} path="profile" />
               <Route element={<Search />} path="search" />
+              <Route element={<NewSearchEngine />} path="search-improved" />
+              <Route element={<FoundResults />} path="found-results" />
               <Route element={<PrescriptionForm />} path="prescription-form" />
               <Route
                 path="edit-prescription/:prescriptionId"

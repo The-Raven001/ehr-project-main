@@ -156,8 +156,8 @@ def handle_patients():
     patients = Patient.query.filter_by(office_id=user["office_id"]).all()
 
     if request.method == 'GET':
-        
         return jsonify([patient.serialize() for patient in patients]), 200
+
     if request.method == 'POST':
         data = request.get_json()
         new_patient = Patient(
