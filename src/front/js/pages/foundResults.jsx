@@ -5,8 +5,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const FoundResults = () => {
-  const navigate = useNavigate();
   const { store, actions } = useContext(Context);
+  const navigate = useNavigate();
+
+  const [patients, setPatients] = useState([]);
+
   const [inputValue, setInputValue] = useState({
     inputFromUser: "",
   });
@@ -29,6 +32,18 @@ export const FoundResults = () => {
       alert("No results were found");
     }
   }
+
+  useEffect(() => {
+    const patients = store.patients;
+
+    if (patients) {
+      setPatients(patients);
+    }
+
+    if (!patients) {
+      alert("No patient has been found");
+    }
+  }, [store.patients]);
 
   return (
     <div className="container w-50 border border-3 mt-5 maindiv bg-light">
@@ -60,7 +75,26 @@ export const FoundResults = () => {
           Go back
         </Link>
       </form>
-      <div>This is your confirmation</div>
+      {patients.length > 0 ? (
+        <div>
+          {patients.map((patient) => (
+            <div
+              key={patient.id}
+              className="btn btn-dark d-flex justify-content-center"
+            >
+              <div className="rounded-5">
+                <h5>
+                  {patient.name} {patient.last}
+                </h5>
+                <p>{patient.dob}</p>
+                <p>{patient.phone_number}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div>Loading patients data....</div>
+      )}
     </div>
   );
 };
