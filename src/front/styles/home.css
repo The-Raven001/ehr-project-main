@@ -162,3 +162,10 @@ body {
 .refill-button:hover {
   background-color: #ddd;
 }
+
+.patient-slot-charts:hover {
+  color: black !important;
+  background-color: white !important;
+  border-color: black !important;
+  border-radius: 5px !important;
+}

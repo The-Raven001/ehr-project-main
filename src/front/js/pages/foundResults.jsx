@@ -27,9 +27,19 @@ export const FoundResults = () => {
     const success = await actions.improvedSearch(inputValue.inputFromUser);
 
     if (success) {
-      alert("it worked");
     } else {
       alert("No results were found");
+    }
+  }
+
+  async function handleSubmitOfChart(chart) {
+    const success = await actions.search(chart);
+
+    if (success) {
+      alert("Patient found");
+      navigate("/protected/chart");
+    } else {
+      alert("Patient not found");
     }
   }
 
@@ -78,18 +88,18 @@ export const FoundResults = () => {
       {patients.length > 0 ? (
         <div>
           {patients.map((patient) => (
-            <div
-              key={patient.id}
-              className="btn btn-dark d-flex justify-content-center"
+            <button
+              onClick={() => handleSubmitOfChart(patient.chart)}
+              key={patient.chart}
+              className="btn btn-dark rounded m-2 text-white shadow-lg patient-slot-charts"
             >
-              <div className="rounded-5">
-                <h5>
-                  {patient.name} {patient.last}
-                </h5>
-                <p>{patient.dob}</p>
-                <p>{patient.phone_number}</p>
+              <div className="p-1">
+                <p className="m-0 ms-1">
+                  #{patient.chart} | {patient.name} {patient.last_name} |{" "}
+                  {patient.dob}
+                </p>
               </div>
-            </div>
+            </button>
           ))}
         </div>
       ) : (
