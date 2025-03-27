@@ -212,16 +212,20 @@ const getState = ({ getStore, getActions, setStore }) => {
       improvedSearch: async (inputFromUser) => {
         try {
           const token = localStorage.getItem("token");
-          const response = await fetch(
-            `${process.env.BACKEND_URL}api/patients`,
-            {
-              method: "GET",
-              headers: {
-                "Content-type": "application/json",
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
+
+          let url = `${
+            process.env.BACKEND_URL
+          }api/patients?inputFromUser=${encodeURIComponent(
+            inputFromUser || ""
+          )}`;
+
+          const response = await fetch(url, {
+            method: "GET",
+            headers: {
+              "Content-type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          });
           if (!response.ok) {
             throw new Error(
               "There was an error while trying to fetch the requested data."

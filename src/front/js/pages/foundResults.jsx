@@ -91,7 +91,7 @@ export const FoundResults = () => {
             <button
               onClick={() => handleSubmitOfChart(patient.chart)}
               key={patient.chart}
-              className="btn btn-dark rounded m-2 text-white shadow-lg patient-slot-charts"
+              className="bg-dark rounded m-2 text-white shadow-lg patient-slot-charts"
             >
               <div className="p-1">
                 <p className="m-0 ms-1">

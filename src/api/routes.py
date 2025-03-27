@@ -9,6 +9,7 @@ from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identi
 from api.firebase_setup import initialize_firebase, get_firestore_client, get_storage_bucket
 from datetime import datetime
 from sqlalchemy.exc import SQLAlchemyError
+import re
 api = Blueprint('api', __name__)
 initialize_firebase()
 db_firestore = get_firestore_client()
@@ -147,17 +148,51 @@ def handle_create_user():
         db.session.rollback()
         return jsonify({"error": error}), 500
 
-
+#Working here to modify the way patients are being filtered to send to the front-end
 @api.route('/patients', methods=['GET', 'POST', 'PUT'])
 @jwt_required()
 def handle_patients():
 
     user = get_jwt_identity()
-    patients = Patient.query.filter_by(office_id=user["office_id"]).all()
+
+    input_from_user = request.args.get('inputFromUser', '')
 
     if request.method == 'GET':
-        return jsonify([patient.serialize() for patient in patients]), 200
 
+        if input_from_user == '':
+            return jsonify({"error": "Please include data or search criteria"}), 400
+        else:
+            name_pattern = r'^([\w\s]+),\s*([\w\s]+)$'
+            date_pattern = r'^\d{4}-\d{2}-\d{2}$'
+
+            if re.match (name_pattern, input_from_user):
+                match = re.match(name_pattern, input_from_user)
+                last_name = match.group(1).strip()
+                name = match.group(2).strip()
+
+                patients = Patient.query.filter_by(office_id=user["office_id"]).filter(Patient.last_name.ilike(f'%{last_name}%'), Patient.name.ilike(f'%{name}%')).all()
+
+                if not patients:
+                    return jsonify({"error": "no patients matching the criteria"}), 404
+
+                return jsonify([patient.serialize() for patient in patients]), 200
+
+            elif re.match(date_pattern, input_from_user):
+                if not patients:
+                    return jsonify({"error": "no patients matching the criteria"}), 404
+                patients = Patient.query.filter_by(office_id=user["office_id"], dob=input_from_user).all()
+                return jsonify([patient.serialize() for patient in patients]), 200
+        
+            elif input_from_user.isdigit():
+                patients = Patient.query.filter_by(office_id=user["office_id"], chart=input_from_user).all()
+                if not patients:
+                    return jsonify({"error": "no patients matching the criteria"}), 404
+                return jsonify([patient.serialize() for patient in patients]), 200
+            
+            else:
+                return jsonify({"error": "Invalid search format"}), 400
+
+        
     if request.method == 'POST':
         data = request.get_json()
         new_patient = Patient(
