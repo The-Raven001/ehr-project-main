@@ -178,10 +178,17 @@ def handle_patients():
                 return jsonify([patient.serialize() for patient in patients]), 200
 
             elif re.match(date_pattern, input_from_user):
-                if not patients:
-                    return jsonify({"error": "no patients matching the criteria"}), 404
-                patients = Patient.query.filter_by(office_id=user["office_id"], dob=input_from_user).all()
-                return jsonify([patient.serialize() for patient in patients]), 200
+                try:
+                    input_date = datetime.strptime(input_from_user, '%Y-%m-%d').date()
+                    patients = Patient.query.filter_by(office_id=user["office_id"], dob=input_date).all()
+
+                    if not patients:
+                        return jsonify({"error": "no patients matching the criteria"}), 404
+                    
+                    return jsonify([patient.serialize() for patient in patients]), 200
+                except Exception as error:
+                    return jsonify({"error": "Error in date format"}), 400
+                
         
             elif input_from_user.isdigit():
                 patients = Patient.query.filter_by(office_id=user["office_id"], chart=input_from_user).all()
