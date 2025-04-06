@@ -8,7 +8,6 @@ import { Home } from "./pages/home.jsx";
 import { CreateChart } from "./pages/createChart.jsx";
 import { SignUp } from "./pages/signUp.jsx";
 import { Login } from "./pages/login.jsx";
-import { Search } from "./pages/searchChart.jsx";
 import { NewSearchEngine } from "./pages/newSearchEngine.jsx";
 import { FoundResults } from "./pages/foundResults.jsx";
 import { Chart } from "./pages/chart.jsx";
@@ -51,7 +50,6 @@ const Layout = () => {
               <Route element={<AddNote />} path="add-note" />
               <Route element={<EditProfile />} path="edit-profile" />
               <Route element={<Profile />} path="profile" />
-              <Route element={<Search />} path="search" />
               <Route element={<NewSearchEngine />} path="search-improved" />
               <Route element={<FoundResults />} path="found-results" />
               <Route element={<PrescriptionForm />} path="prescription-form" />
