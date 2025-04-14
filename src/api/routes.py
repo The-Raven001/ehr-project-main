@@ -201,6 +201,9 @@ def handle_patients():
 
         
     if request.method == 'POST':
+
+        patients = Patient.query.filter_by(office_id=user["office_id"]).all()
+
         data = request.get_json()
         new_patient = Patient(
             chart=len(patients) + 1,
