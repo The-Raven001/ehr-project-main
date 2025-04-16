@@ -73,6 +73,15 @@ export const FoundResults = () => {
             placeholder="Enter any data related to the patient you are looking for"
           />
         </div>
+        <p className="text-secondary p-0 m-0">
+          <em>-Search by chart by entering the corresponding chart number.</em>
+        </p>
+        <p className="text-secondary p-0 m-0">
+          <em>-Search by name using the following format 'Last name, name'.</em>
+        </p>
+        <p className="text-secondary p-0 m-0">
+          <em>-Search by date of birth using dd-mm-yyyy.</em>
+        </p>
         <div className="d-flex justify-content-center">
           <button
             type="submit"
