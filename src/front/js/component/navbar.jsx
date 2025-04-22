@@ -1,5 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
+/*const [currentPath, setCurrentPath] = useState("/");
+//const location = useLocation();
+
+ useEffect(() => {
+  setCurrentPath(location.pathname);
+}, [location]); 
+*/
 
 export const Navbar = () => {
   return (
