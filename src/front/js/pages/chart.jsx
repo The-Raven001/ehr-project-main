@@ -101,7 +101,7 @@ export const Chart = () => {
 
   return (
     <div className="patient-info">
-      <Link to="/protected/search">Back to search</Link>
+      <Link to="/protected/search-improved">Back to search</Link>
       <div className="patient-header">
         <div className="patient-profile">
           <div className="patient-avatar">
@@ -137,6 +137,10 @@ export const Chart = () => {
             className="edit-chart-button rounded bg-dark text-light"
             onClick={handleEditClick}
           >
+            <i
+              className="fa-solid fa-pencil me-2"
+              styleName="color: #ffffff;"
+            ></i>
             Edit Chart
           </button>
         </div>

@@ -87,6 +87,10 @@ export const FoundResults = () => {
             type="submit"
             className="btn btn-dark w-25 mt-3 mb-3 saveButton"
           >
+            <i
+              className="fa-solid fa-magnifying-glass me-2"
+              styleName="color: #ffffff;"
+            ></i>
             Search
           </button>
         </div>

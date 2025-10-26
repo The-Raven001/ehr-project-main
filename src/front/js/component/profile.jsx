@@ -48,26 +48,6 @@ export const Profile = () => {
   return (
     <div className="d-flex justify-content-center ">
       <div className="bg-light d-flex justify-content-center align-items-center flex-column mt-5 maindiv">
-        <div className="d-flex mb-3">
-          <button
-            className="btn btn-dark profileButton me-2"
-            onClick={handleEditProfile}
-          >
-            Edit Profile
-          </button>
-          <button
-            className="btn btn-dark profileButton me-2"
-            onClick={handleCreateChart}
-          >
-            Create Chart
-          </button>
-        </div>
-        <button
-          onClick={handleLogout}
-          className="btn btn-dark me-2 mb-3 profileButton"
-        >
-          Logout
-        </button>
         <form action="" onSubmit={handleSubmit}>
           <h2 className="text-center">Search patient by chart</h2>
           <div>
@@ -102,15 +82,13 @@ export const Profile = () => {
               type="submit"
               className="btn btn-dark w-25 mt-3 mb-3 saveButton"
             >
+              <i
+                className="fa-solid fa-magnifying-glass me-2"
+                styleName="color: #ffffff;"
+              ></i>
               Search
             </button>
           </div>
-          <Link
-            to="/protected/profile"
-            className="d-flex justify-content-center"
-          >
-            Go back
-          </Link>
         </form>
       </div>
     </div>

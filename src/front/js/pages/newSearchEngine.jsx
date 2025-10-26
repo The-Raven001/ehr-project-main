@@ -63,9 +63,6 @@ export const NewSearchEngine = () => {
             Search
           </button>
         </div>
-        <Link to="/protected/profile" className="d-flex justify-content-center">
-          Go back
-        </Link>
       </form>
     </div>
   );

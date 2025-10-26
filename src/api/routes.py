@@ -10,6 +10,7 @@ from api.firebase_setup import initialize_firebase, get_firestore_client, get_st
 from datetime import datetime
 from sqlalchemy.exc import SQLAlchemyError
 import re
+import json
 api = Blueprint('api', __name__)
 initialize_firebase()
 db_firestore = get_firestore_client()
@@ -90,7 +91,9 @@ def handle_login():
         return {"error": "Invalid email"}, 401
     if user.password != data.get('password'):
         return {"error": "Invalid password"}, 401
-    access_token = create_access_token({"id": user.id, "office_id": user.office_id})
+    
+    identity = json.dumps({"id": user.id, "office_id": user.office_id})
+    access_token = create_access_token(identity=identity)
     return jsonify(access_token=access_token), 200
 
 @api.route('/users', methods=['GET', 'PUT', 'DELETE'])
@@ -153,7 +156,7 @@ def handle_create_user():
 @jwt_required()
 def handle_patients():
 
-    user = get_jwt_identity()
+    user = json.loads(get_jwt_identity())
 
     input_from_user = request.args.get('inputFromUser', '')
 
@@ -227,7 +230,7 @@ def handle_patients():
         )
         db.session.add(new_patient)
         db.session.commit()
-        return new_patient.serialize(), 201
+        return jsonify(new_patient.serialize()), 201
 
     if request.method == 'PUT':
         data = request.get_json()
@@ -260,7 +263,7 @@ def handle_patients():
         patient.address_of_pharmacy = data.get('address_of_pharmacy', patient.address_of_pharmacy)
 
         db.session.commit()
-        return patient.serialize(), 200
+        return jsonify(patient.serialize(), 200)
 
 @api.route('/patients/<int:patient_id>', methods=['GET', 'PUT', 'DELETE'])
 @jwt_required()
@@ -293,7 +296,7 @@ def handle_patient(patient_id):
         patient.address_of_pharmacy = data.get('address_of_pharmacy')
 
         db.session.commit()
-        return patient.serialize(), 200
+        return jsonify(patient.serialize()), 200
 
     if request.method == 'DELETE':
         db.session.delete(patient)
@@ -429,7 +432,7 @@ def get_notes():
 @api.route('/search/<int:chart>', methods=['GET'])
 @jwt_required()
 def handle_get_patient(chart):
-    user = get_jwt_identity()
+    user = json.loads(get_jwt_identity()) if isinstance(get_jwt_identity(), str) else get_jwt_identity()
     patient = Patient.query.filter_by(office_id=user["office_id"], chart=chart).first()
     if not patient:
         return jsonify({"error": "chart not found"}), 404

@@ -19,6 +19,10 @@ export const WelcomeNavbar = () => {
                 currentPath === "/" ? "active" : ""
               }`}
             >
+              <i
+                className="fa-solid fa-house me-2"
+                styleName="color: #ffffff;"
+              ></i>
               Back to home
             </button>
           </Link>
@@ -42,6 +46,10 @@ export const WelcomeNavbar = () => {
                   currentPath === "/signup" ? "active" : ""
                 }`}
               >
+                <i
+                  className="fa-solid fa-user-plus me-2"
+                  styleName="color: #ffffff;"
+                ></i>
                 Sign Up
               </button>
             </Link>
